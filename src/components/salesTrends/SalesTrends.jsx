@@ -88,7 +88,7 @@ const SalesTrends = () => {
           <select
             name="sort"
             id="sort"
-            className="border bg-white rounded-full p-2 cursor-pointer dark:bg-stone-800 dark:text-white"
+            className="border bg-white rounded-full p-2 cursor-pointer text-mainColors-secondary dark:bg-stone-800 dark:text-white"
           >
             <option value="Weekly" className="">
               Weekly

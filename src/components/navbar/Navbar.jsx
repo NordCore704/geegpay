@@ -124,7 +124,7 @@ const Navbar = () => {
 
       {/* ==== mobile sidebar ===== */}
       <button
-        className="flex sm:hidden text-xl self-center  duration-300 transition-colors dark:text-neutral-white hover:text-alerts-success dark:hover:text-alerts-success"
+        className="flex sm:hidden text-xl self-center  duration-300 transition-colors dark:text-neutral-white hover:text-alerts-success dark:hover:text-alerts-success text-mainColors-secondary"
         onClick={handleSideBar}
       >
         <RiMenu4Fill />
@@ -134,18 +134,18 @@ const Navbar = () => {
 
       <div className="flex gap-5 items-center sm:hidden dark:text-neutral-white">
         <div className="flex gap-2">
-          <button className="hover:text-alerts-success duration-300 transition-colors">
+          <button className="hover:text-alerts-success duration-300 transition-colors text-mainColors-secondary dark:text-white">
             <LuCalendarDays />
           </button>
-          <p className="text-sm font-medium hidden sm:flex">
+          <p className="text-sm font-medium hidden sm:flex dark:text-white text-mainColors-secondary">
             November 15, 2023
           </p>
         </div>
-        <button className="border rounded-full p-2 hover:text-alerts-success hover:border-alerts-success duration-300 transition-colors">
+        <button className="border rounded-full p-2 hover:text-alerts-success hover:border-alerts-success duration-300 transition-colors text-mainColors-secondary dark:text-white">
           <FaRegBell />
         </button>
         <button
-          className="border p-1 lg:p-2 flex items-center gap-3 rounded-full bg-white relative dark:bg-stone-800 dark:border-0"
+          className="border p-1 lg:p-2 flex items-center gap-3 rounded-full bg-white relative dark:bg-stone-800 dark:border-0 group"
           onClick={handleModalDropDown}
         >
           <Image src={avatarHeader} className="w-8" alt="avatar-header" />
@@ -155,19 +155,19 @@ const Navbar = () => {
               Justin@gmail.com
             </p>
           </div>
-          <div className="text-2xl hover:text-alerts-success duration-300 transition-colors">
+          <div className="text-2xl hover:text-alerts-success duration-300 transition-colors text-mainColors-secondary dark:text-white">
             <RiArrowDownSLine />
           </div>
           {openModal ? (
             <div className=" flex-col gap-2 p-2 border rounded-xl bg-white absolute right-0 -bottom-[165px] flex sm:hidden w-36 lg:right-1 dark:bg-stone-800 dark:border-gray-700">
-              <p className="border-b dark:border-gray-700">My Account</p>
-              <button className="hover:bg-grayscale-300 p-1 rounded-md">
+              <p className="border-b dark:border-gray-700 dark:text-white text-mainColors-secondary">My Account</p>
+              <button className="hover:bg-grayscale-300 p-1 rounded-md dark:text-white text-mainColors-secondary">
                 Profile
               </button>
-              <button className="hover:bg-grayscale-300 p-1 rounded-md">
+              <button className="hover:bg-grayscale-300 p-1 rounded-md dark:text-white text-mainColors-secondary">
                 Team
               </button>
-              <button className="hover:bg-grayscale-300 p-1 rounded-md">
+              <button className="hover:bg-grayscale-300 p-1 rounded-md dark:text-white text-mainColors-secondary">
                 logout
               </button>
             </div>

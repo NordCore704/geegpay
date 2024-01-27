@@ -17,9 +17,9 @@ const TopPlatform = () => {
             <progress className='w-full rounded-lg progress-purple' max={'25'} value={'15'}></progress>
             </div>
             <div className="flex justify-between items-center w-full">
-                <p className="text-lg font-normal"> $2,500,000</p>
+                <p className="text-lg font-normal text-mainColors-secondary dark:text-white"> $2,500,000</p>
 
-                <p className="text-lg font-normal self-end"> +15%</p>
+                <p className="text-lg font-normal self-end text-mainColors-secondary dark:text-white"> +15%</p>
             </div>
         </div>
         {/* ==== 2 ===== */}
@@ -29,9 +29,9 @@ const TopPlatform = () => {
             <progress className='w-full rounded-lg progress-blue' max={'25'} value={'10'}></progress>
             </div>
             <div className="flex justify-between items-center w-full">
-                <p className="text-lg font-normal"> $1,800,000</p>
+                <p className="text-lg font-normal text-mainColors-secondary dark:text-white"> $1,800,000</p>
 
-                <p className="text-lg font-normal self-end"> +10%</p>
+                <p className="text-lg font-normal self-end text-mainColors-secondary dark:text-white"> +10%</p>
             </div>
         </div>
         {/* ==== 3 ===== */}
@@ -41,9 +41,9 @@ const TopPlatform = () => {
               <progress className='w-full rounded-lg progress-yellow' max={'25'} value={'8'}></progress>
             </div>
             <div className="flex justify-between items-center w-full">
-                <p className="text-lg font-normal"> $1,200,000</p>
+                <p className="text-lg font-normal text-mainColors-secondary dark:text-white"> $1,200,000</p>
 
-                <p className="text-lg font-normal self-end"> +8%</p>
+                <p className="text-lg font-normal self-end text-mainColors-secondary dark:text-white"> +8%</p>
             </div>
         </div>
         {/* ==== 4 ===== */}
@@ -53,9 +53,9 @@ const TopPlatform = () => {
               <progress className='w-full rounded-lg progress-red' max={'25'} value={'8'}></progress>
             </div>
             <div className="flex justify-between items-center w-full">
-                <p className="text-lg font-normal"> $500,000</p>
+                <p className="text-lg font-normal text-mainColors-secondary dark:text-white"> $500,000</p>
 
-                <p className="text-lg font-normal self-red"> +5%</p>
+                <p className="text-lg font-normal self-red text-mainColors-secondary dark:text-white"> +5%</p>
             </div>
         </div>
       </div>

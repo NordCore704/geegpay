@@ -15,7 +15,7 @@ const Header = () => {
     <header className="w-full flex justify-evenly gap-10 items-center py-[18px] px-4 sm:px-4 lg:px-0 border-b dark:border-gray-700 bg-grayscale-50 dark:bg-stone-950 dark:text-white">
       <h2 className="text-xl font-semibold text-gray-950 dark:bg-stone-950 dark:text-white">Dashboard</h2>
 
-      <div className="border p-2 hidden sm:flex gap-3 rounded-full bg-white dark:bg-stone-800 dark:border-0 dark:text-white">
+      <div className="border p-2 hidden sm:flex gap-3 rounded-full bg-white dark:bg-stone-800 dark:border-0 dark:text-white text-mainColors-secondary">
         <Image src={search} alt={"search"} />
         <input
           type="text"
@@ -25,14 +25,14 @@ const Header = () => {
       </div>
       <div className="sm:flex gap-5 items-center hidden">
         <div className="flex gap-2">
-          <button className="hover:text-alerts-success transition-colors duration-300">
+          <button className="hover:text-alerts-success transition-colors duration-300 dark:text-white text-mainColors-secondary">
             <LuCalendarDays />
           </button>
-          <p className="text-sm font-medium hidden lg:flex dark:bg-stone-950 dark:text-white">
+          <p className="text-sm font-medium hidden lg:flex dark:bg-stone-950 dark:text-white text-mainColors-secondary">
             November 15, 2023
           </p>
         </div>
-        <button className="border rounded-full p-2 hover:text-alerts-success hover:border-alerts-success transition-colors duration-300">
+        <button className="border rounded-full p-2 hover:text-alerts-success hover:border-alerts-success transition-colors duration-300 dark:text-white text-mainColors-secondary">
           <FaRegBell/>
         </button>
         <button
@@ -45,24 +45,24 @@ const Header = () => {
             alt="avatar-header"
           />
           <div className="hidden lg:flex flex-col gap-1 items-end">
-            <p className="font-normal text-base text-right">Justin Bergson</p>
-            <p className="font-normal text-sm text-gray-300">
+            <p className="font-normal text-base text-right dark:text-white text-mainColors-secondary">Justin Bergson</p>
+            <p className="font-normal text-sm text-gray-300 dark:text-white">
               Justin@gmail.com
             </p>
           </div>
-          <div className="text-2xl hover:text-alerts-success duration-300 transition-colors">
+          <div className="text-2xl hover:text-alerts-success duration-300 transition-colors dark:text-white text-mainColors-secondary">
             <RiArrowDownSLine />
           </div>
           {openModal ? (
             <div className=" flex-col gap-2 p-2 border rounded-xl bg-white absolute right-2 -bottom-[165px] hidden sm:flex w-36 lg:right-1 dark:bg-stone-800 dark:border-gray-600">
               <p className="border-b dark:border-gray-600">My Account</p>
-              <button className="hover:bg-grayscale-300 p-1 rounded-md">
+              <button className="hover:bg-grayscale-300 p-1 rounded-md dark:text-white text-mainColors-secondary">
                 Profile
               </button>
-              <button className="hover:bg-grayscale-300 p-1 rounded-md">
+              <button className="hover:bg-grayscale-300 p-1 rounded-md dark:text-white text-mainColors-secondary">
                 Team
               </button>
-              <button className="hover:bg-grayscale-300 p-1 rounded-md">
+              <button className="hover:bg-grayscale-300 p-1 rounded-md dark:text-white text-mainColors-secondary">
                 logout
               </button>
             </div>
