@@ -46,7 +46,10 @@ const hoverColor = 'rgba(52, 202, 165, 0.6)';
 export const options = {
   scales: {
     x: {
-     display: false
+      border: {dash: [7,4]},
+      grid: {
+        color: 'rgba(0, 0, 0, 0)',
+      }
     },
     y: {
       border: {dash: [7,4]},
@@ -63,7 +66,7 @@ export const options = {
       position: "none",
     },
     title: {
-      display: true,
+      display: false,
       text: "",
     },
   },
