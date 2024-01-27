@@ -11,7 +11,8 @@ import {
 import Image from "next/image";
 import { InvoiceModal } from "@/exports";
 import { TbFileDownload } from "react-icons/tb";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const orders = [
   {
@@ -73,24 +74,58 @@ const animationsVariants = {
 
 const OrderList = () => {
   const [modalState, setModalState] = useState(false);
-  const [selectedRow, setSelectedRow] = useState(null)
+  const [selectedRow, setSelectedRow] = useState(null);
+  const animation = useAnimation();
+  const [ref, inView] = useInView({
+    threshold: 0.4,
+    triggerOnce: true,
+  });
   const handleModal = (order) => {
-    setSelectedRow(order)
+    setSelectedRow(order);
     setModalState(true);
   };
 
+  const scrollVariant = {
+    visible: {
+      y: 0,
+      zIndex: 0,
+      opacity: 1,
+    },
+    hidden: {
+      y: -100,
+      zIndex: -10,
+      opacity: 0,
+    },
+  };
 
   useEffect(() => {
     // Disable scroll when invoice modal is open
     modalState
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "auto");
-
   }, [modalState]);
+
+  useEffect(() => {
+    if (inView) {
+      animation.start("visible");
+    } else {
+      animation.start("hidden");
+    }
+  }, [inView]);
+
   return (
-    <motion.section className="border rounded-[14px] bg-neutral-white py-[18px] px-[20px] flex flex-col gap-[14px] sm:items-center items-stretch dark:bg-stone-800 dark:text-white dark:border-0" variants={animationsVariants} initial={'initial'} animate={'animate'} transition={animationsVariants.transition}>
+    <motion.section
+      className="border rounded-[14px] bg-neutral-white py-[18px] px-[20px] flex flex-col gap-[14px] sm:items-stretch items-stretch dark:bg-stone-800 dark:text-white dark:border-0"
+      variants={animationsVariants}
+      initial={"initial"}
+      animate={"animate"}
+      transition={animationsVariants.transition}
+      ref={ref}
+    >
       <div className="flex w-full items-center justify-between ">
-        <p className="text-lg font-semibold text-[#26282C] dark:text-white">Last Orders</p>
+        <p className="text-lg font-semibold text-[#26282C] dark:text-white">
+          Last Orders
+        </p>
         <button className="text-lg font-medium text-alerts-success hover:text-alerts-warning">
           See All
         </button>
@@ -119,9 +154,18 @@ const OrderList = () => {
           </thead>
           <tbody className="flex flex-col gap-4 items-center">
             {orders.map((order, index) => (
-              <tr
+              <motion.tr
                 className="flex items-center justify-between self-stretch pt-2 border-t dark:border-gray-700"
                 key={index}
+                variants={scrollVariant}
+                animate={animation}
+                initial="hidden"
+                transition={{
+                  delay: 0.4 * index,
+                  ease: "easeInOut",
+                  duration: 0.6,
+                  type: "tween",
+                }}
               >
                 <td className="flex items-center gap-2 text-base text-left font-medium justify-start text-[#3A3F51] dark:text-white">
                   <Image src={order.image} alt="" />
@@ -151,28 +195,39 @@ const OrderList = () => {
                     {order.invoice}
                   </button>
                 </td>
-              </tr>
+              </motion.tr>
             ))}
           </tbody>
         </table>
       </div>
 
-{/* === full invoice modal render === */}
+      {/* === full invoice modal render === */}
       {modalState ? (
-              <InvoiceModal
-                order={selectedRow}
-                setModalState={setModalState}
-                modalState={modalState}
-              />
-            ) : (
-              <></>
-            )}
+        <InvoiceModal
+          order={selectedRow}
+          setModalState={setModalState}
+          modalState={modalState}
+        />
+      ) : (
+        <></>
+      )}
 
       {/* ==== mobile screen(table) ==== */}
       <div className="flex flex-col gap-4 sm:hidden">
         {orders.map((order, index) => (
-          <div className="py-2 flex flex-col gap-3 border-t w-full" key={index}>
-         
+          <motion.div
+            className="py-2 flex flex-col gap-3 border-t w-full"
+            key={index}
+            variants={scrollVariant}
+            animate={animation}
+            initial="hidden"
+            transition={{
+              delay: 0.4 * index,
+              ease: "easeInOut",
+              duration: 0.6,
+              type: "tween",
+            }}
+          >
             <div className="flex flex-wrap justify-between items-center gap-2 w-full">
               <p className="flex items-center gap-2 text-base text-left font-medium justify-start text-[#3A3F51] dark:text-neutral-white">
                 <Image src={order.image} alt="" />
@@ -205,7 +260,7 @@ const OrderList = () => {
                 </button>
               </p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </motion.section>

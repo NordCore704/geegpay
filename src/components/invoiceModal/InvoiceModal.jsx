@@ -51,7 +51,7 @@ const InvoiceModal = ({ order, setModalState, modalState }) => {
           <h2 className="text-xl font-semibold text-alerts-success">Invoice</h2>
 
           <button
-            className=" font-medium hover:text-alerts-warning duration-300 transition-colors text-xl dark:text-white text-mainColors-secondary"
+            className=" font-medium hover:text-alerts-warning duration-300 transition-colors text-xl dark:text-white text-mainColors-secondary dark:hover:text-alerts-warning"
             onClick={handleModal}
           >
             <RiCloseFill />
