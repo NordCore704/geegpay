@@ -25,3 +25,58 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+.background {
+  background-color: rgba(21, 17, 17, 0.51);
+}
+.green {
+  border-radius: 1000px;
+  background: rgba(52, 202, 165, 0.12);
+}
+.red {
+  border-radius: 1000px;
+  background: rgba(237, 84, 78, 0.12);
+}
+.progress-blue::-moz-progress-bar{
+    background-color: #54c6eb;
+    border-radius: 16px;
+}
+.progress-blue::-webkit-progress-value{
+    background-color: #54c6eb;
+    border-radius: 16px;
+}
+.progress-red::-moz-progress-bar{
+    background-color: #ff4955;
+    border-radius: 16px;
+}
+.progress-red::-webkit-progress-value{
+    background-color: #ff4955;
+    border-radius: 16px;
+}
+.progress-yellow::-moz-progress-bar{
+    background-color: #ffb749;
+    border-radius: 16px;
+}
+.progress-yellow::-webkit-progress-value{
+    background-color: #ffb749;
+    border-radius: 16px;
+}
+.progress-purple::-moz-progress-bar{
+    background-color: #6060DC;
+    border-radius: 16px;
+}
+.progress-purple::-webkit-progress-value{
+    background-color: #6060DC;
+    border-radius: 16px;
+}
+.progress-purple:indeterminate{
+  background-color: #6060DC;
+}
+.progress-blue:indeterminate{
+  background-color: #54c6eb;
+}
+.progress-yellow:indeterminate{
+  background-color: #ffb749;
+}
+.progress-red:indeterminate{
+  background-color: #ff4955;
+}
