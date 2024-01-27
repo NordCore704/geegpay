@@ -146,6 +146,7 @@ const OrderList = () => {
               <InvoiceModal
                 order={selectedRow}
                 setModalState={setModalState}
+                modalState={modalState}
               />
             ) : (
               <></>

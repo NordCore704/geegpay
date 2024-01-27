@@ -55,7 +55,7 @@ const Header = () => {
           </div>
           {openModal ? (
             <div className=" flex-col gap-2 p-2 border rounded-xl bg-white absolute right-2 -bottom-[165px] hidden sm:flex w-36 lg:right-1 dark:bg-stone-800 dark:border-gray-600">
-              <p className="border-b dark:border-gray-600">My Account</p>
+              <p className="border-b dark:border-gray-600 dark:text-white text-mainColors-secondary">My Account</p>
               <button className="hover:bg-grayscale-300 p-1 rounded-md dark:text-white text-mainColors-secondary">
                 Profile
               </button>

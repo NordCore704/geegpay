@@ -43,8 +43,8 @@ const Navbar = () => {
   const pathName = usePathname();
   const isActive = (path) => path === pathName;
 
-  const [isOpen, setIsOpen] = useState(true);
-  const { theme, setTheme } = useTheme()
+  const [isOpen, setIsOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
   const [openModal, setOpenModal] = useState(false);
 
   const handleModalDropDown = () => {
@@ -52,18 +52,18 @@ const Navbar = () => {
   };
 
   const handleSideBar = () => {
-    setIsOpen((prev) => !prev);
+    setIsOpen(true);
   };
 
   useEffect(() => {
     // Disable scroll when navbar is open
-    !isOpen
+    isOpen
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "auto");
     // Close navbar when screen width becomes larger than 640px (if navbar was left open initially)
     const handleResize = () => {
-      if (window.innerWidth > 640 && !isOpen) {
-        setIsOpen(true);
+      if (window.innerWidth > 640 && isOpen) {
+        setIsOpen(false);
       }
     };
 
@@ -97,11 +97,19 @@ const Navbar = () => {
           </div>
           {/* === theme toggle === */}
           <div className="bg-neutral-white rounded-3xl flex flex-col items-center gap-2 p-1 dark:bg-stone-800 dark:text-white">
-            <button className="" onClick={() => setTheme('light')}>
-              <TbBrightnessDownFilled className={`text-grayscale-300 text-xl hover:bg-alerts-success rounded-full hover:text-white transition-colors duration-300 ${theme === 'light' ? 'bg-alerts-success text-white' : ''}`} />
+            <button className="" onClick={() => setTheme("light")}>
+              <TbBrightnessDownFilled
+                className={`text-grayscale-300 text-xl hover:bg-alerts-success rounded-full hover:text-white transition-colors duration-300 ${
+                  theme === "light" ? "bg-alerts-success text-white" : ""
+                }`}
+              />
             </button>
-            <button className="" onClick={() => setTheme('dark')}>
-              <TbMoonFilled className={`text-grayscale-300 text-xl hover:bg-alerts-success rounded-full hover:text-white transition-colors duration-300 p-1 ${theme === 'dark' ? 'bg-alerts-success text-white' : ''}`} />
+            <button className="" onClick={() => setTheme("dark")}>
+              <TbMoonFilled
+                className={`text-grayscale-300 text-xl hover:bg-alerts-success rounded-full hover:text-white transition-colors duration-300 p-1 ${
+                  theme === "dark" ? "bg-alerts-success text-white" : ""
+                }`}
+              />
             </button>
           </div>
         </div>
@@ -130,7 +138,7 @@ const Navbar = () => {
         <RiMenu4Fill />
       </button>
 
-      {!isOpen ? <MobileNavbar setIsOpen={setIsOpen} /> : <></>}
+      {isOpen ? <MobileNavbar setIsOpen={setIsOpen} isOpen={isOpen} /> : <></>}
 
       <div className="flex gap-5 items-center sm:hidden dark:text-neutral-white">
         <div className="flex gap-2">
@@ -160,7 +168,9 @@ const Navbar = () => {
           </div>
           {openModal ? (
             <div className=" flex-col gap-2 p-2 border rounded-xl bg-white absolute right-0 -bottom-[165px] flex sm:hidden w-36 lg:right-1 dark:bg-stone-800 dark:border-gray-700">
-              <p className="border-b dark:border-gray-700 dark:text-white text-mainColors-secondary">My Account</p>
+              <p className="border-b dark:border-gray-700 dark:text-white text-mainColors-secondary">
+                My Account
+              </p>
               <button className="hover:bg-grayscale-300 p-1 rounded-md dark:text-white text-mainColors-secondary">
                 Profile
               </button>

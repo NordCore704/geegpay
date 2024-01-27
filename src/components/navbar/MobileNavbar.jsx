@@ -1,5 +1,5 @@
-'use client'
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import { RiCloseFill } from "react-icons/ri";
 import {
   logo,
@@ -33,17 +33,33 @@ const secondLinks = [
   { id: 3, path: "/", icon: logout },
 ];
 
-const MobileNavbar = ({ setIsOpen }) => {
+const MobileNavbar = ({ setIsOpen, isOpen }) => {
   const { theme, setTheme } = useTheme();
   const pathName = usePathname();
   const isActive = (path) => path === pathName;
 
-  const handleSideBar = () => {
-    setIsOpen((prev) => !prev);
+  const handleSideBar = (event) => {
+    setIsOpen(false);
+    event.stopPropagation();
   };
+
+  const handleExternalClicks = (event) => {
+    if (isOpen && !event.target.closest(".sidebar-open")) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleExternalClicks);
+    return () => document.removeEventListener("click", handleExternalClicks);
+  }, [isOpen]);
+
   return (
-    <div className="w-full h-[100vh] top-0 left-0 fixed z-10 background sm:hidden flex dark:text-neutral-white">
-      <aside className="z-20 w-[20%] h-full flex  pt-5 pb-2 px-5 bg-grayscale-50 items-center justify-center gap-10 flex-col border-r border-grayscale-300  dark:bg-stone-950 dark:border-0 text-mainColors-secondary dark:text-white">
+    <div
+      className="w-full h-[100vh] top-0 left-0 fixed z-10 background sm:hidden flex dark:text-neutral-white"
+      onClick={handleExternalClicks}
+    >
+      <aside className="z-20 w-[20%] h-full flex  pt-5 pb-2 px-5 bg-grayscale-50 items-center justify-center gap-10 flex-col border-r border-grayscale-300  dark:bg-stone-950 dark:border-0 text-mainColors-secondary dark:text-white sidebar-open">
         <button
           className="flex sm:hidden text-2xl  hover:text-alerts-success duration-300 transition-colors self-start"
           onClick={handleSideBar}
