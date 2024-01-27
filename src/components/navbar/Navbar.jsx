@@ -6,6 +6,7 @@ import { RiArrowDownSLine, RiMenu4Fill } from "react-icons/ri";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import { MobileNavbar } from "@/exports";
+import { useAnimation } from "framer-motion";
 import {
   logo,
   categories,
@@ -39,6 +40,8 @@ const secondLinks = [
   { id: 3, path: "/", icon: logout },
 ];
 
+
+
 const Navbar = () => {
   const pathName = usePathname();
   const isActive = (path) => path === pathName;
@@ -46,6 +49,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [openModal, setOpenModal] = useState(false);
+  const animation = useAnimation()
 
   const handleModalDropDown = () => {
     setOpenModal((prev) => !prev);
@@ -138,7 +142,7 @@ const Navbar = () => {
         <RiMenu4Fill />
       </button>
 
-      {isOpen ? <MobileNavbar setIsOpen={setIsOpen} isOpen={isOpen} /> : <></>}
+      {isOpen ? <MobileNavbar setIsOpen={setIsOpen} isOpen={isOpen}  animation={animation}/> : <></>}
 
       <div className="flex gap-5 items-center sm:hidden dark:text-neutral-white">
         <div className="flex gap-2">

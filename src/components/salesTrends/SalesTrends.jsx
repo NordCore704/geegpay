@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { motion } from "framer-motion";
 
 ChartJS.register(
   CategoryScale,
@@ -67,20 +68,24 @@ export const options = {
     },
   },
 };
-
-const handleHover = (e) => {
-  // const { chart, datasetIndex, elementIndex } = e;
-  // const dataset = chart.config.data.datasets[datasetIndex];
-
-  // dataset.bars[elementIndex].backgroundColor = "#34CAA5";
-
-  // chart.update();
-  console.log(e);
+const animationsVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+  transition: {
+    ease: "easeInOut",
+    duration: 0.2,
+    type: "tween",
+    delay: 0,
+  },
 };
 
 const SalesTrends = () => {
   return (
-    <section className="p-5 bg-white border rounded-[14px] shrink-0 flex flex-col gap-5 dark:bg-stone-800 dark:border-0">
+    <motion.section className="p-5 bg-white border rounded-[14px] shrink-0 flex flex-col gap-5 dark:bg-stone-800 dark:border-0" variants={animationsVariants} animate={'animate'} initial={'initial'} transition={animationsVariants.transition}>
       <div className="flex sm:justify-between flex-col sm:flex-row items-center">
         <h2 className="text-lg font-semibold text-[#26282C] dark:text-white">Sales Trends</h2>
         <span className="flex gap-3 px-2 py-3 items-center">
@@ -121,7 +126,7 @@ const SalesTrends = () => {
           options={options}
         />
       </div>
-    </section>
+    </motion.section>
   );
 };
 

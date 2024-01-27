@@ -2,6 +2,26 @@
 import React, { useEffect } from "react";
 import { RiCloseFill } from "react-icons/ri";
 import { TiDownload, TiPrinter } from "react-icons/ti";
+import { motion } from "framer-motion";
+
+
+const modalAnimationsVariants = {
+  initial: {
+    y: "100",
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+  },
+  transition: {
+    ease: "easeInOut",
+    duration: 0.7,
+    type: "spring",
+    // stiffness: 500,
+    // damping: 50,
+  },
+};
 
 const InvoiceModal = ({ order, setModalState, modalState }) => {
   const handleModal = (event) => {
@@ -23,7 +43,10 @@ const InvoiceModal = ({ order, setModalState, modalState }) => {
   
   return (
     <div className="fixed top-0 left-0 background w-full h-full flex justify-center items-center  dark:text-white" onClick={handleExternalClicks}>
-      <div className="border rounded-xl gap-5 flex-col bg-white p-4 flex w-[70%] dark:bg-stone-950 dark:border-0 modal-open">
+      <motion.div className="border rounded-xl gap-5 flex-col bg-white p-4 flex w-[70%] dark:bg-stone-950 dark:border-0 modal-open" variants={modalAnimationsVariants}
+        initial={'initial'}
+        animate={'animate'}
+        transition={modalAnimationsVariants.transition}>
         <div className="flex justify-between">
           <h2 className="text-xl font-semibold text-alerts-success">Invoice</h2>
 
@@ -67,7 +90,7 @@ const InvoiceModal = ({ order, setModalState, modalState }) => {
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

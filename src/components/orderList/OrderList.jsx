@@ -11,6 +11,7 @@ import {
 import Image from "next/image";
 import { InvoiceModal } from "@/exports";
 import { TbFileDownload } from "react-icons/tb";
+import { motion } from "framer-motion";
 
 const orders = [
   {
@@ -55,6 +56,21 @@ const orders = [
   },
 ];
 
+const animationsVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+  transition: {
+    ease: "easeInOut",
+    duration: 0.2,
+    type: "tween",
+    delay: 1,
+  },
+};
+
 const OrderList = () => {
   const [modalState, setModalState] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null)
@@ -72,7 +88,7 @@ const OrderList = () => {
 
   }, [modalState]);
   return (
-    <section className="border rounded-[14px] bg-neutral-white py-[18px] px-[20px] flex flex-col gap-[14px] items-center dark:bg-stone-800 dark:text-white dark:border-0">
+    <motion.section className="border rounded-[14px] bg-neutral-white py-[18px] px-[20px] flex flex-col gap-[14px] sm:items-center items-stretch dark:bg-stone-800 dark:text-white dark:border-0" variants={animationsVariants} initial={'initial'} animate={'animate'} transition={animationsVariants.transition}>
       <div className="flex w-full items-center justify-between ">
         <p className="text-lg font-semibold text-[#26282C] dark:text-white">Last Orders</p>
         <button className="text-lg font-medium text-alerts-success hover:text-alerts-warning">
@@ -192,7 +208,7 @@ const OrderList = () => {
           </div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 };
 

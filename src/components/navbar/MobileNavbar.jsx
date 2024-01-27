@@ -18,6 +18,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { TbBrightnessDownFilled, TbMoonFilled } from "react-icons/tb";
 import { useTheme } from "next-themes";
+import { motion } from "framer-motion";
 
 const links = [
   { id: 1, path: "/", icon: categories },
@@ -33,7 +34,23 @@ const secondLinks = [
   { id: 3, path: "/", icon: logout },
 ];
 
-const MobileNavbar = ({ setIsOpen, isOpen }) => {
+const sidebarAnimationsVariants = {
+  initial: {
+    x: "-100",
+    opacity: 0,
+  },
+  animate: {
+    x: 0,
+    opacity: 1,
+  },
+  transition: {
+    ease: "easeInOut",
+    duration: 0.4,
+    type: "tween",
+  },
+};
+
+const MobileNavbar = ({ setIsOpen, isOpen, animation }) => {
   const { theme, setTheme } = useTheme();
   const pathName = usePathname();
   const isActive = (path) => path === pathName;
@@ -59,7 +76,13 @@ const MobileNavbar = ({ setIsOpen, isOpen }) => {
       className="w-full h-[100vh] top-0 left-0 fixed z-10 background sm:hidden flex dark:text-neutral-white"
       onClick={handleExternalClicks}
     >
-      <aside className="z-20 w-[20%] h-full flex  pt-5 pb-2 px-5 bg-grayscale-50 items-center justify-center gap-10 flex-col border-r border-grayscale-300  dark:bg-stone-950 dark:border-0 text-mainColors-secondary dark:text-white sidebar-open">
+      <motion.aside
+        className="z-20 w-[20%] h-full flex  pt-5 pb-2 px-5 bg-grayscale-50 items-center justify-center gap-10 flex-col border-r border-grayscale-300  dark:bg-stone-950 dark:border-0 text-mainColors-secondary dark:text-white sidebar-open"
+        variants={sidebarAnimationsVariants}
+        initial={'initial'}
+        animate={'animate'}
+        transition={sidebarAnimationsVariants.transition}
+      >
         <button
           className="flex sm:hidden text-2xl  hover:text-alerts-success duration-300 transition-colors self-start"
           onClick={handleSideBar}
@@ -122,7 +145,7 @@ const MobileNavbar = ({ setIsOpen, isOpen }) => {
             })}
           </div>
         </div>
-      </aside>
+      </motion.aside>
     </div>
   );
 };

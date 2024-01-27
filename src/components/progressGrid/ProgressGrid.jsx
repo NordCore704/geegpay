@@ -1,3 +1,4 @@
+'use client'
 import {
   boxGreen,
   cartGreen,
@@ -10,10 +11,27 @@ import {
 } from "@/exports/images";
 import Image from "next/image";
 import React from "react";
+import { motion } from "framer-motion";
+
+
+const animationsVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+  transition: {
+    ease: "easeInOut",
+    duration: 0.2,
+    type: "tween",
+    delay: .5,
+  },
+};
 
 const ProgressGrid = () => {
   return (
-    <section className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-grayscale-50 dark:bg-stone-950 dark:text-white">
+    <motion.section className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-grayscale-50 dark:bg-stone-950 dark:text-white" initial={'initial'} animate={'animate'} variants={animationsVariants} transition={animationsVariants.transition}>
       {/* ==== 1 ===== */}
       <div className="bg-white border rounded-[14px] p-4 flex flex-col justify-center items-center gap-[10px] dark:bg-stone-800 dark:border-0 dark:text-white">
         <div className="flex justify-between w-full p-1">
@@ -96,7 +114,7 @@ const ProgressGrid = () => {
           <p className="text-sm font-normal text-mainColors-secondary dark:text-white">vs. previous month</p>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
